@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "CBS Pick'em IQ Bridge",
-  "version": "0.3.0",
-  "description": "Scans authenticated CBS Pick'em pages and exports only CBS Pick'em GraphQL data.",
+  "version": "0.4.0",
+  "description": "Scans CBS Pick'em ownership/standings and current CBS NFL odds for Sunday Funday IQ.",
   "permissions": [
     "storage",
     "downloads",
@@ -10,7 +10,9 @@
     "tabs"
   ],
   "host_permissions": [
-    "https://picks.cbssports.com/*"
+    "https://picks.cbssports.com/*",
+    "https://www.cbssports.com/nfl/odds/*",
+    "https://www.cbssports.com/nfl/odds/"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -22,7 +24,9 @@
   "content_scripts": [
     {
       "matches": [
-        "https://picks.cbssports.com/*"
+        "https://picks.cbssports.com/*",
+        "https://www.cbssports.com/nfl/odds/*",
+        "https://www.cbssports.com/nfl/odds/"
       ],
       "js": [
         "bridge.js"
