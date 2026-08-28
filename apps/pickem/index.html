@@ -1,243 +1,79 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111f">
-<title>Sunday Funday IQ · CBS Pick'em</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f"><title>Sunday Funday IQ · Pick'em</title>
 <style>
-:root{
- --bg:#07111f;--panel:#0f1d31;--panel2:#132641;--line:#243954;--text:#edf5ff;
- --muted:#91a7c2;--green:#32d296;--yellow:#f3c969;--red:#ff6b7a;--blue:#5ab0ff;
- --accent:#8ee3cf;--purple:#a78bfa;--orange:#f5a94a
-}
-*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#07111f,#091729 45%,#07111f);color:var(--text);
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
-button,input,select{font:inherit}.app{max-width:1200px;margin:auto;padding:18px 14px 70px}
-.header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
-.brand h1{font-size:24px;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);
-padding:10px 13px;border-radius:12px;font-weight:750;cursor:pointer}.btn.primary{background:var(--accent);color:#06201a;border:none}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.card{background:rgba(15,29,49,.96);border:1px solid var(--line);
-border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.13)}.metric{grid-column:span 2;min-height:104px}
-.metric .label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.metric .value{font-size:27px;font-weight:850;margin-top:7px}
-.metric .sub{font-size:11px;color:var(--muted);margin-top:5px}.wide{grid-column:span 12}.half{grid-column:span 6}
-h2{font-size:16px;margin:0 0 12px}.good{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}.muted{color:var(--muted)}
-.hero{display:flex;justify-content:space-between;gap:12px;align-items:center}.hero .headline{font-size:18px;font-weight:850}.hero .why{font-size:12px;color:var(--muted);margin-top:4px;max-width:850px}
-.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:850;background:#203858;color:#cfe6ff;white-space:nowrap}
-.pill.green{background:#173d35;color:#9ff0d0}.pill.yellow{background:#473c19;color:#ffe49a}.pill.red{background:#44202a;color:#ffb3be}.pill.blue{background:#193958;color:#aad7ff}
-.banner{display:none;padding:12px 14px;border-radius:12px;margin-bottom:12px;background:#0b2b28;border:1px solid #184b45;font-size:13px}
-.importBox{border:1px dashed #365477;border-radius:14px;padding:13px;background:#0a1728}.importBox b{display:block;margin-bottom:4px}.importBox span{font-size:12px;color:var(--muted)}
-.games{display:grid;grid-template-columns:1fr 1fr;gap:10px}.game{border:1px solid var(--line);border-radius:14px;background:#0b1829;padding:12px}
-.gamehead{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px}
-.matchup{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:7px}.team{padding:8px;border:1px solid #203854;border-radius:10px}
-.team.right{text-align:right}.teamname{font-size:15px;font-weight:850}.pct{font-size:12px;color:var(--muted);margin-top:3px}
-.pickbtn{width:100%;margin-top:8px;border:1px solid #345170;background:#152a46;color:var(--text);padding:7px;border-radius:9px;font-weight:800;cursor:pointer}
-.pickbtn.selected{background:#174b40;border-color:#2b8d74;color:#b9ffe8}.at{font-size:12px;color:var(--muted)}
-.intel{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:9px}.mini{background:#101f34;border-radius:9px;padding:8px}
-.mini b{display:block;font-size:13px}.mini span{font-size:9px;color:var(--muted);text-transform:uppercase}
-.inputs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}.inputs label{font-size:9px;color:var(--muted);text-transform:uppercase}
-.inputs input{width:100%;margin-top:4px;background:#081422;border:1px solid #29415e;color:var(--text);border-radius:8px;padding:7px}
-table{width:100%;border-collapse:collapse;font-size:12px;min-width:760px}.tablewrap{overflow:auto}th{text-align:left;color:var(--muted);
-font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:8px;border-bottom:1px solid var(--line)}td{padding:9px 8px;border-bottom:1px solid rgba(36,57,84,.55)}
-.note{font-size:11px;color:var(--muted);line-height:1.45}.footer{margin-top:16px;text-align:center;font-size:10px;color:#69829e}
-@media(max-width:850px){.metric{grid-column:span 4}.half{grid-column:span 12}.games{grid-template-columns:1fr}}
-@media(max-width:520px){.metric{grid-column:span 6}.header{display:block}.actions{justify-content:flex-start;margin-top:10px}.intel{grid-template-columns:1fr 1fr}}
-</style>
-</head>
-<body>
+:root{--bg:#07111f;--panel:#0f1d31;--panel2:#132641;--line:#243954;--text:#edf5ff;--muted:#91a7c2;--green:#32d296;--yellow:#f3c969;--red:#ff6b7a;--blue:#5ab0ff;--accent:#8ee3cf}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#07111f,#091729 45%,#07111f);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh}
+button,input{font:inherit}.app{max-width:1220px;margin:auto;padding:18px 14px 70px}.header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}.brand h1{font-size:24px;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 13px;border-radius:12px;font-weight:800;cursor:pointer}.btn.primary{background:var(--accent);color:#06201a;border:none}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.card{background:rgba(15,29,49,.97);border:1px solid var(--line);border-radius:16px;padding:14px}.wide{grid-column:span 12}.half{grid-column:span 6}.metric{grid-column:span 2;min-height:105px}.metric .label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.metric .value{font-size:27px;font-weight:900;margin-top:7px}.metric .sub{font-size:10px;color:var(--muted);margin-top:5px}
+h2{font-size:16px;margin:0 0 12px}.hero{display:flex;justify-content:space-between;gap:12px;align-items:center}.headline{font-size:18px;font-weight:900}.why{font-size:12px;color:var(--muted);margin-top:4px;max-width:900px}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:9px;font-weight:900;background:#203858;color:#cfe6ff;white-space:nowrap}.pill.green{background:#173d35;color:#9ff0d0}.pill.yellow{background:#473c19;color:#ffe49a}.pill.red{background:#44202a;color:#ffb3be}.pill.blue{background:#193958;color:#aad7ff}.good{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+.banner{display:none;padding:11px 13px;margin-bottom:12px;border:1px solid #184b45;border-radius:12px;background:#0b2b28;font-size:12px}.games{display:grid;grid-template-columns:1fr 1fr;gap:10px}.game{border:1px solid var(--line);border-radius:14px;background:#0b1829;padding:12px}.gamehead{display:flex;justify-content:space-between;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px}.matchup{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:7px}.team{padding:9px;border:1px solid #203854;border-radius:10px}.team.right{text-align:right}.teamname{font-size:16px;font-weight:900}.pct{font-size:11px;color:var(--muted);margin-top:3px}.pickbtn{width:100%;margin-top:8px;border:1px solid #345170;background:#152a46;color:var(--text);padding:7px;border-radius:9px;font-weight:850;cursor:pointer}.pickbtn.selected{background:#174b40;border-color:#2b8d74;color:#b9ffe8}.at{font-size:11px;color:var(--muted)}
+.intel{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:9px}.mini{background:#101f34;border-radius:9px;padding:8px}.mini b{display:block;font-size:13px}.mini span{font-size:8px;color:var(--muted);text-transform:uppercase}.inputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}.inputs label{font-size:8px;color:var(--muted);text-transform:uppercase}.inputs input{width:100%;margin-top:4px;background:#081422;border:1px solid #29415e;color:var(--text);border-radius:8px;padding:7px}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:830px}.tablewrap{overflow:auto}th{text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:8px;border-bottom:1px solid var(--line)}td{padding:9px 8px;border-bottom:1px solid rgba(36,57,84,.55)}.callout{background:#0a1728;border:1px solid #203854;border-radius:12px;padding:12px}.callout b{display:block;margin-bottom:5px}.note{font-size:11px;color:var(--muted);line-height:1.5}.footer{margin-top:16px;text-align:center;font-size:10px;color:#69829e}
+@media(max-width:850px){.metric{grid-column:span 4}.half{grid-column:span 12}.games{grid-template-columns:1fr}}@media(max-width:520px){.metric{grid-column:span 6}.header{display:block}.actions{justify-content:flex-start;margin-top:10px}.intel,.inputs{grid-template-columns:1fr 1fr}}
+</style></head><body>
 <div class="app">
- <div class="header">
-  <div class="brand"><h1>🏈 Sunday Funday IQ</h1><p>CBS Pick'em · Weekly tournament optimizer</p><p style="font-size:10px;color:#5f7898">Build 0.2 · CBS Bridge Import</p></div>
-  <div class="actions">
-   <input id="scanFile" type="file" accept=".json,application/json" hidden>
-   <button class="btn primary" id="importBtn">Import CBS Scan</button>
-   <button class="btn" id="optimizeBtn">Optimize Card</button>
-   <button class="btn" id="saveBtn">Save</button>
-  </div>
- </div>
- <div class="banner" id="banner"></div>
-
- <div class="card wide" style="margin-bottom:12px">
-  <div class="hero"><div><div class="headline" id="headline">Import your CBS scan to build the weekly card.</div>
-  <div class="why" id="why">Weekly 1st/2nd probability is the objective. Season standings are treated as a byproduct.</div></div>
-  <span class="pill blue">WEEKLY ATTACK</span></div>
- </div>
-
- <div class="grid">
-  <div class="card metric"><div class="label">Pool</div><div class="value" id="poolSize">102</div><div class="sub">entries</div></div>
-  <div class="card metric"><div class="label">Games</div><div class="value" id="gameCount">16</div><div class="sub">confidence slots</div></div>
-  <div class="card metric"><div class="label">Picks Set</div><div class="value" id="picksSet">0/16</div><div class="sub">current card</div></div>
-  <div class="card metric"><div class="label">CBS Similarity</div><div class="value" id="similarity">—</div><div class="sub">chalk overlap</div></div>
-  <div class="card metric"><div class="label">Leverage Picks</div><div class="value" id="leverage">—</div><div class="sub">model vs CBS</div></div>
-  <div class="card metric"><div class="label">Data</div><div class="value good" id="dataStatus">READY</div><div class="sub" id="dataTime">Week 1 seed</div></div>
-
-  <div class="card half">
-   <h2>CBS Data Feed</h2>
-   <div class="importBox"><b>Bridge → Scan → Import</b><span>Import the JSON exported by CBS Pick'em IQ Bridge. The dashboard automatically reads all matchups and CBS public pick percentages. Re-import any time CBS percentages change.</span></div>
-  </div>
-  <div class="card half">
-   <h2>Optimization Logic</h2>
-   <div class="note">Winner selection uses market/model probability first. CBS pick percentage is treated as field ownership. Confidence 16→1 is assigned across the whole card, not game-by-game. When no market spread is available, the card is marked <b>FIELD ONLY</b> rather than pretending CBS ownership is a predictive model.</div>
-  </div>
-
-  <div class="card wide">
-   <h2>Weekly Card</h2>
-   <div class="games" id="games"></div>
-  </div>
-
-  <div class="card wide">
-   <h2>Decision Board</h2>
-   <div class="tablewrap"><table><thead><tr><th>Game</th><th>IQ Pick</th><th>Weight</th><th>CBS Pick %</th><th>Market/Model %</th><th>Leverage</th><th>Read</th></tr></thead><tbody id="rows"></tbody></table></div>
-  </div>
- </div>
- <div class="footer">CBS percentages come from your authenticated CBS page via the local bridge. Market probabilities are estimates from entered spreads unless a live feed is available.</div>
-</div>
+<div class="header"><div class="brand"><h1>🏈 Sunday Funday IQ</h1><p>CBS Pick'em · Weekly tournament optimizer</p><p style="font-size:10px;color:#5f7898">Build 0.3 · Top-2 objective</p></div>
+<div class="actions"><a class="btn" href="../../" style="text-decoration:none;display:inline-flex;align-items:center">⌂ Home</a><input id="scanFile" type="file" accept=".json,application/json" hidden><button class="btn primary" id="importBtn">Import CBS Scan</button><button class="btn" id="optBtn">Run Tournament Optimizer</button><button class="btn" id="saveBtn">Save</button></div></div>
+<div class="banner" id="banner"></div>
+<div class="card wide" style="margin-bottom:12px"><div class="hero"><div><div class="headline">Week 1 tournament card</div><div class="why">Optimize the entire 16-game card for a large confidence pool — not each game in isolation.</div></div><span class="pill green" id="modePill">MARKET + FIELD</span></div></div>
+<div class="grid">
+<div class="card metric"><div class="label">Pool</div><div class="value" id="poolSize">102</div><div class="sub">entries</div></div>
+<div class="card metric"><div class="label">Expected Pts</div><div class="value" id="expPts">—</div><div class="sub">confidence EV</div></div>
+<div class="card metric"><div class="label">Top 2</div><div class="value" id="top2">—</div><div class="sub">simulated chance</div></div>
+<div class="card metric"><div class="label">Win</div><div class="value" id="winPct">—</div><div class="sub">simulated 1st</div></div>
+<div class="card metric"><div class="label">Card Chalk</div><div class="value" id="chalk">—</div><div class="sub">weighted ownership</div></div>
+<div class="card metric"><div class="label">Tiebreaker</div><div class="value" id="tie">—</div><div class="sub">MNF market total</div></div>
+<div class="card half"><h2>Optimizer model</h2><div class="callout"><b>Probability first. Differentiation second.</b><div class="note">Moneylines are converted to implied probabilities and de-vigged. CBS pick percentages estimate field ownership. The simulator creates the rest of the pool from that ownership behavior and evaluates your chance of finishing 1st or 2nd.</div></div></div>
+<div class="card half"><h2>Data status</h2><div class="callout"><b id="statusTitle">Week 1 seeded from CBS market</b><div class="note" id="statusText">Market seed: Aug. 28, 2026. Import a v0.4 CBS Bridge scan to refresh ownership, standings context, moneylines, and the Monday-night total.</div></div></div>
+<div class="card wide"><h2>Weekly Card</h2><div class="games" id="games"></div></div>
+<div class="card wide"><h2>Decision Board</h2><div class="tablewrap"><table><thead><tr><th>Game</th><th>Pick</th><th>Weight</th><th>CBS%</th><th>No-vig win%</th><th>Edge</th><th>Read</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+</div><div class="footer">Re-scan close to the weekly deadline. Both market prices and CBS ownership can move.</div></div>
 <script>
-const TEAM_ABBR={
- PATRIOTS:"NE",SEAHAWKS:"SEA","49ERS":"SF",RAMS:"LAR",BUCCANEERS:"TB",BENGALS:"CIN",BILLS:"BUF",TEXANS:"HOU",
- RAVENS:"BAL",COLTS:"IND",BEARS:"CHI",PANTHERS:"CAR",SAINTS:"NO",LIONS:"DET",BROWNS:"CLE",JAGUARS:"JAX",
- FALCONS:"ATL",STEELERS:"PIT",JETS:"NYJ",TITANS:"TEN",PACKERS:"GB",VIKINGS:"MIN",COMMANDERS:"WAS",EAGLES:"PHI",
- DOLPHINS:"MIA",RAIDERS:"LV",CARDINALS:"ARI",CHARGERS:"LAC",COWBOYS:"DAL",GIANTS:"NYG",BRONCOS:"DEN",CHIEFS:"KC"
-};
 const SEED=[
- ["PATRIOTS",18,"SEAHAWKS",82],["49ERS",15,"RAMS",85],["BUCCANEERS",26,"BENGALS",74],["BILLS",81,"TEXANS",19],
- ["RAVENS",81,"COLTS",19],["BEARS",86,"PANTHERS",14],["SAINTS",6,"LIONS",94],["BROWNS",9,"JAGUARS",91],
- ["FALCONS",15,"STEELERS",85],["JETS",18,"TITANS",82],["PACKERS",66,"VIKINGS",34],["COMMANDERS",8,"EAGLES",92],
- ["DOLPHINS",21,"RAIDERS",79],["CARDINALS",6,"CHARGERS",94],["COWBOYS",76,"GIANTS",24],["BRONCOS",42,"CHIEFS",58]
+{id:'g1',away:'NE',home:'SEA',awayPct:18,homePct:82,awayML:164,homeML:-175,total:44.5,pick:null,weight:null},
+{id:'g2',away:'SF',home:'LAR',awayPct:15,homePct:85,awayML:168,homeML:-185,total:48.5,pick:null,weight:null},
+{id:'g3',away:'TB',home:'CIN',awayPct:26,homePct:74,awayML:171,homeML:-198,total:51.5,pick:null,weight:null},
+{id:'g4',away:'BUF',home:'HOU',awayPct:81,homePct:19,awayML:-105,homeML:-102,total:44.5,pick:null,weight:null},
+{id:'g5',away:'BAL',home:'IND',awayPct:81,homePct:19,awayML:-175,homeML:164,total:47.5,pick:null,weight:null},
+{id:'g6',away:'CHI',home:'CAR',awayPct:86,homePct:14,awayML:-142,homeML:132,total:47.5,pick:null,weight:null},
+{id:'g7',away:'NO',home:'DET',awayPct:6,homePct:94,awayML:290,homeML:-305,total:49.5,pick:null,weight:null},
+{id:'g8',away:'CLE',home:'JAX',awayPct:9,homePct:91,awayML:330,homeML:-380,total:40.5,pick:null,weight:null},
+{id:'g9',away:'ATL',home:'PIT',awayPct:15,homePct:85,awayML:145,homeML:-167,total:42.5,pick:null,weight:null},
+{id:'g10',away:'NYJ',home:'TEN',awayPct:18,homePct:82,awayML:124,homeML:-138,total:39.5,pick:null,weight:null},
+{id:'g11',away:'GB',home:'MIN',awayPct:66,homePct:34,awayML:101,homeML:-118,total:45.5,pick:null,weight:null},
+{id:'g12',away:'WAS',home:'PHI',awayPct:8,homePct:92,awayML:194,homeML:-213,total:46.5,pick:null,weight:null},
+{id:'g13',away:'MIA',home:'LV',awayPct:21,homePct:79,awayML:170,homeML:-189,total:40.5,pick:null,weight:null},
+{id:'g14',away:'ARI',home:'LAC',awayPct:6,homePct:94,awayML:450,homeML:-535,total:46.5,pick:null,weight:null},
+{id:'g15',away:'DAL',home:'NYG',awayPct:76,homePct:24,awayML:-144,homeML:129,total:48.5,pick:null,weight:null},
+{id:'g16',away:'DEN',home:'KC',awayPct:42,homePct:58,awayML:126,homeML:-142,total:43.5,pick:null,weight:null}
 ];
-let state=JSON.parse(localStorage.getItem("cbsPickemIQv02")||"null")||{
- poolSize:102, importedAt:null,
- games:SEED.map((x,i)=>({id:"g"+(i+1),away:x[0],awayPct:x[1],home:x[2],homePct:x[3],homeSpread:null,pick:null,weight:null}))
-};
-const $=id=>document.getElementById(id);
-const save=()=>localStorage.setItem("cbsPickemIQv02",JSON.stringify(state));
-const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-function spreadToHomeProb(spread){
- if(spread===null||spread===""||!Number.isFinite(Number(spread)))return null;
- const s=Number(spread);
- // Smooth NFL spread→win probability approximation. Negative spread means home favorite.
- return clamp(1/(1+Math.exp(0.135*s)),.04,.96);
-}
-function probs(g){
- const hp=spreadToHomeProb(g.homeSpread);
- return hp==null?{home:null,away:null}:{home:hp,away:1-hp};
-}
-function chosenSide(g){
- if(g.pick===g.home)return "home"; if(g.pick===g.away)return "away"; return null;
-}
-function crowdProb(g,side){return (side==="home"?g.homePct:g.awayPct)/100}
-function modelProb(g,side){const p=probs(g);return p[side]}
-function autoSide(g){
- const p=probs(g);
- if(p.home==null) return g.homePct>=g.awayPct?"home":"away";
- // Small tournament leverage adjustment; probability remains dominant.
- const hs=p.home + .18*(p.home-g.homePct/100);
- const as=p.away + .18*(p.away-g.awayPct/100);
- return hs>=as?"home":"away";
-}
-function utility(g,side){
- const mp=modelProb(g,side), cp=crowdProb(g,side);
- if(mp==null) return cp; // clearly marked field-only elsewhere
- // confidence utility: expected points first, with selective ownership leverage.
- return mp + .10*(mp-cp);
-}
-function read(g,side){
- const mp=modelProb(g,side),cp=crowdProb(g,side);
- if(mp==null)return {txt:"FIELD ONLY",cls:"blue",lev:null};
- const lev=mp-cp;
- if(lev>=.10)return {txt:"STRONG LEVERAGE",cls:"green",lev};
- if(lev>=.04)return {txt:"GOOD LEVERAGE",cls:"green",lev};
- if(lev<=-.12)return {txt:"BAD CHALK",cls:"red",lev};
- if(lev<=-.05)return {txt:"OVEROWNED",cls:"yellow",lev};
- return {txt:"FAIR",cls:"blue",lev};
-}
-function optimize(){
- state.games.forEach(g=>{const s=autoSide(g);g.pick=s==="home"?g.home:g.away});
- const ranked=[...state.games].sort((a,b)=>{
-   const sa=chosenSide(a),sb=chosenSide(b);
-   return utility(b,sb)-utility(a,sa);
- });
- ranked.forEach((g,i)=>g.weight=state.games.length-i);
- save();render();
- showBanner("Card optimized across all "+state.games.length+" games. Add/refresh market spreads to turn FIELD ONLY reads into true leverage reads.");
-}
-function parseCBS(obj){
- const snaps=obj.snapshots||[];
- const pick=snaps.filter(s=>/Picks$/i.test(s.title||"")||/\|\s*Picks/i.test(s.title||"")).sort((a,b)=>String(b.ts).localeCompare(String(a.ts)))[0];
- if(!pick)throw new Error("No CBS Picks page snapshot found.");
- const text=pick.text||"";
- const rx=/0-0\n([A-Z0-9]+)\n(\d+)%\n(\d+)\s+Pts?\n0-0\n([A-Z0-9]+)\n(\d+)%/g;
- const found=[];let m;
- while((m=rx.exec(text))!==null)found.push({away:m[1],awayPct:+m[2],home:m[4],homePct:+m[5]});
- if(!found.length)throw new Error("CBS matchup percentages were not found in the scan.");
- const old=new Map(state.games.map(g=>[g.away+"|"+g.home,g]));
- state.games=found.map((g,i)=>{
-   const prev=old.get(g.away+"|"+g.home)||{};
-   return {id:"g"+(i+1),...g,homeSpread:prev.homeSpread??null,pick:prev.pick??null,weight:prev.weight??null};
- });
- // Count player names from standings when possible.
- const stand=snaps.filter(s=>/Weekly Standings/i.test(s.title||"")).sort((a,b)=>String(b.ts).localeCompare(String(a.ts)))[0];
- if(stand){
-   const st=stand.text||"";
-   const matches=[...st.matchAll(/\n\n\n([^\n\t]{2,60})\n\t0\t0\t/g)].map(x=>x[1]).filter(n=>!/^PLAYERS$/i.test(n));
-   if(matches.length>20)state.poolSize=new Set(matches).size;
- }
- state.importedAt=obj.exportedAt||new Date().toISOString();
- save();render();showBanner("CBS scan imported: "+state.games.length+" games and current public pick percentages.");
-}
-function showBanner(t){$("banner").textContent=t;$("banner").style.display="block";setTimeout(()=>{$("banner").style.display="none"},7000)}
-function pct(n){return n==null?"—":Math.round(n*100)+"%"}
-function render(){
- $("poolSize").textContent=state.poolSize||"—";$("gameCount").textContent=state.games.length;
- $("dataTime").textContent=state.importedAt?new Date(state.importedAt).toLocaleString():"Week 1 seed";
- let set=0,matchCBS=0,levCount=0,withModel=0;
- state.games.forEach(g=>{
-   const side=chosenSide(g); if(!side)return;set++;
-   if(crowdProb(g,side)>=.5)matchCBS++;
-   const r=read(g,side);if(r.lev!=null){withModel++;if(r.lev>=.04)levCount++}
- });
- $("picksSet").textContent=set+"/"+state.games.length;
- $("similarity").textContent=set?Math.round(matchCBS/set*100)+"%":"—";
- $("leverage").textContent=withModel?levCount:"—";
- $("dataStatus").textContent=state.importedAt?"CBS LIVE":"SEEDED";
- $("headline").textContent=withModel?"Weekly card has market-vs-field intelligence.":"CBS ownership loaded. Add spreads, then Optimize Card.";
- $("why").textContent=withModel?"Use probability to survive and ownership to differentiate. Confidence weights are optimized across the entire card.":"CBS percentages tell us what the field is doing; spreads give us the independent probability signal needed to identify real leverage.";
- $("games").innerHTML=state.games.map((g,i)=>{
-   const side=chosenSide(g),p=probs(g),r=side?read(g,side):{txt:"UNPICKED",cls:"blue",lev:null};
-   return `<div class="game">
-    <div class="gamehead"><span>Game ${i+1}</span><span>${g.weight?g.weight+" confidence":"weight pending"}</span></div>
-    <div class="matchup">
-     <div class="team"><div class="teamname">${g.away}</div><div class="pct">${g.awayPct}% CBS · ${p.away==null?"—":pct(p.away)} model</div>
-      <button class="pickbtn ${side==="away"?"selected":""}" data-pick="${g.away}" data-id="${g.id}">${side==="away"?"✓ "+TEAM_ABBR[g.away]:"Pick "+TEAM_ABBR[g.away]}</button></div>
-     <div class="at">@</div>
-     <div class="team right"><div class="teamname">${g.home}</div><div class="pct">${g.homePct}% CBS · ${p.home==null?"—":pct(p.home)} model</div>
-      <button class="pickbtn ${side==="home"?"selected":""}" data-pick="${g.home}" data-id="${g.id}">${side==="home"?"✓ "+TEAM_ABBR[g.home]:"Pick "+TEAM_ABBR[g.home]}</button></div>
-    </div>
-    <div class="intel">
-     <div class="mini"><b>${g.awayPct}%</b><span>${TEAM_ABBR[g.away]} CBS</span></div>
-     <div class="mini"><b class="${r.cls==="green"?"good":r.cls==="yellow"?"warn":r.cls==="red"?"bad":""}">${r.txt}</b><span>IQ read</span></div>
-     <div class="mini"><b>${g.homePct}%</b><span>${TEAM_ABBR[g.home]} CBS</span></div>
-     <div class="mini"><b>${g.weight||"—"}</b><span>confidence</span></div>
-    </div>
-    <div class="inputs"><label>Home spread (${TEAM_ABBR[g.home]})<input type="number" step=".5" data-spread="${g.id}" value="${g.homeSpread??""}" placeholder="-3.5"></label>
-    <label>Manual weight<input type="number" min="1" max="${state.games.length}" data-weight="${g.id}" value="${g.weight??""}" placeholder="auto"></label></div>
-   </div>`;
- }).join("");
- document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{const g=state.games.find(x=>x.id===b.dataset.id);g.pick=b.dataset.pick;save();render()});
- document.querySelectorAll("[data-spread]").forEach(i=>i.onchange=()=>{const g=state.games.find(x=>x.id===i.dataset.spread);g.homeSpread=i.value===""?null:+i.value;save();render()});
- document.querySelectorAll("[data-weight]").forEach(i=>i.onchange=()=>{const g=state.games.find(x=>x.id===i.dataset.weight);g.weight=i.value===""?null:+i.value;save();render()});
- $("rows").innerHTML=state.games.map(g=>{
-   const side=chosenSide(g),pick=side==="home"?g.home:side==="away"?g.away:null,r=side?read(g,side):{txt:"UNPICKED",cls:"blue",lev:null};
-   const mp=side?modelProb(g,side):null,cp=side?crowdProb(g,side):null;
-   return `<tr><td>${TEAM_ABBR[g.away]} @ ${TEAM_ABBR[g.home]}</td><td><b>${pick?TEAM_ABBR[pick]:"—"}</b></td><td>${g.weight||"—"}</td>
-    <td>${cp==null?"—":pct(cp)}</td><td>${mp==null?"—":pct(mp)}</td><td>${r.lev==null?"—":(r.lev>=0?"+":"")+Math.round(r.lev*100)+" pts"}</td>
-    <td><span class="pill ${r.cls}">${r.txt}</span></td></tr>`;
- }).join("");
-}
-$("importBtn").onclick=()=>$("scanFile").click();
-$("scanFile").onchange=async e=>{try{const obj=JSON.parse(await e.target.files[0].text());parseCBS(obj)}catch(err){alert("Could not import CBS scan: "+err.message)}e.target.value=""};
-$("optimizeBtn").onclick=optimize;$("saveBtn").onclick=()=>{save();showBanner("Saved locally in this browser.")};
-render();
-</script>
-</body></html>
+let state=JSON.parse(localStorage.getItem('sfiqPickemV03')||'null')||{poolSize:102,games:SEED,importedAt:null,sim:null};
+const $=id=>document.getElementById(id),save=()=>localStorage.setItem('sfiqPickemV03',JSON.stringify(state));
+function implied(ml){if(ml==null||ml==='')return null;ml=Number(ml);return ml<0?(-ml)/((-ml)+100):100/(ml+100)}
+function market(g){const a=implied(g.awayML),h=implied(g.homeML);if(a==null||h==null)return{away:null,home:null};const s=a+h;return{away:a/s,home:h/s}}
+function side(g){return g.pick===g.away?'away':g.pick===g.home?'home':null}
+function own(g,s){return(s==='away'?g.awayPct:g.homePct)/100} function prob(g,s){return market(g)[s]}
+function edge(g,s){const p=prob(g,s);return p==null?null:p-own(g,s)}
+function edgeSafe(g,s){const e=edge(g,s);return e==null?0:e}
+function read(g,s){const e=edge(g,s);if(e==null)return{t:'NO MARKET',c:'blue'};if(e>=.10)return{t:'STRONG LEVERAGE',c:'green'};if(e>=.04)return{t:'GOOD LEVERAGE',c:'green'};if(e<=-.14)return{t:'HEAVY OVEROWN',c:'red'};if(e<=-.06)return{t:'OVEROWNED',c:'yellow'};return{t:'FAIR',c:'blue'}}
+function utility(g,s,lambda=.12){const p=prob(g,s);return p==null?own(g,s):p+lambda*(p-own(g,s))}
+function bestSide(g,lambda=.12){return utility(g,'home',lambda)>=utility(g,'away',lambda)?'home':'away'}
+function expPoints(){let x=0;for(const g of state.games){const s=side(g);if(s&&g.weight)x+=(prob(g,s)||own(g,s))*g.weight}return x}
+function weightedChalk(){let n=0,d=0;for(const g of state.games){const s=side(g);if(s&&g.weight){n+=own(g,s)*g.weight;d+=g.weight}}return d?n/d:null}
+function pct(x,d=0){return x==null?'—':(x*100).toFixed(d)+'%'}
+function show(t){$('banner').textContent=t;$('banner').style.display='block';setTimeout(()=>$('banner').style.display='none',6500)}
+function assignInitial(lambda=.12){state.games.forEach(g=>{const s=bestSide(g,lambda);g.pick=s==='away'?g.away:g.home});const r=[...state.games].sort((a,b)=>{const sa=side(a),sb=side(b),pa=prob(a,sa)||own(a,sa),pb=prob(b,sb)||own(b,sb);return(pb+.045*edgeSafe(b,sb))-(pa+.045*edgeSafe(a,sa))});r.forEach((g,i)=>g.weight=state.games.length-i)}
+function fieldCard(){const arr=state.games.map(g=>{const s=Math.random()<g.awayPct/100?'away':'home';const certainty=Math.max(g.awayPct,g.homePct)/100+(Math.random()-.5)*.12;return{g,s,certainty}}).sort((a,b)=>b.certainty-a.certainty);const weights=new Map();arr.forEach((x,i)=>weights.set(x.g.id,state.games.length-i));return{choices:new Map(arr.map(x=>[x.g.id,x.s])),weights}}
+function simulate(iter=3500){const N=Math.max(2,state.poolSize||102),mine=state.games.map(g=>({g,s:side(g),w:g.weight||1}));let top2=0,wins=0,total=0;for(let z=0;z<iter;z++){const fields=Array.from({length:N-1},fieldCard);let my=0;const fs=new Array(N-1).fill(0);for(const item of mine){const g=item.g,p=market(g),homeWin=Math.random()<(p.home??g.homePct/100),winner=homeWin?'home':'away';if(item.s===winner)my+=item.w;fields.forEach((f,j)=>{if(f.choices.get(g.id)===winner)fs[j]+=f.weights.get(g.id)})}const better=fs.filter(x=>x>my).length,equal=fs.filter(x=>x===my).length,tieRank=equal?Math.floor(Math.random()*(equal+1)):0,rank=better+tieRank+1;if(rank<=2)top2++;if(rank===1)wins++;total+=my}return{top2:top2/iter,win:wins/iter,avg:total/iter,iter}}
+function quickScore(){const s=simulate(700);return s.top2+.18*s.win+.00002*expPoints()}
+function optimize(){assignInitial(.12);let best=JSON.parse(JSON.stringify(state.games)),bestScore=quickScore();for(let pass=0;pass<2;pass++){for(const g of state.games){const s=side(g),opp=s==='home'?'away':'home',p=prob(g,opp);if(p==null||p<.28)continue;const old=g.pick;g.pick=opp==='home'?g.home:g.away;const sc=quickScore();if(sc>bestScore){bestScore=sc;best=JSON.parse(JSON.stringify(state.games))}g.pick=old}state.games=JSON.parse(JSON.stringify(best));const sorted=[...state.games].sort((a,b)=>(b.weight||0)-(a.weight||0));for(let i=0;i<sorted.length-1;i++){const a=sorted[i],b=sorted[i+1],wa=a.weight,wb=b.weight;a.weight=wb;b.weight=wa;const sc=quickScore();if(sc>bestScore){bestScore=sc;best=JSON.parse(JSON.stringify(state.games))}a.weight=wa;b.weight=wb}state.games=JSON.parse(JSON.stringify(best))}state.sim=simulate(7000);save();render();show('Tournament optimization complete — 7,000 final simulations against a synthetic field.')}
+function parsePicks(text){const rx=/0-0\n([A-Z0-9]+)\n(\d+)%\n(\d+)\s+Pts?\n0-0\n([A-Z0-9]+)\n(\d+)%/g,out=[];let m;while((m=rx.exec(text||''))!==null)out.push({away:m[1],awayPct:+m[2],home:m[4],homePct:+m[5]});return out}
+function parseOdds(text){const matchups=[['NE','SEA'],['SF','LAR'],['TB','CIN'],['BUF','HOU'],['BAL','IND'],['CHI','CAR'],['NO','DET'],['CLE','JAX'],['ATL','PIT'],['NYJ','TEN'],['GB','MIN'],['WAS','PHI'],['MIA','LV'],['ARI','LAC'],['DAL','NYG'],['DEN','KC']],out=[];for(const [a,h] of matchups){const re=new RegExp('(?:^|\\n)'+a+'(?:\\s|\\n)[\\s\\S]{0,900}?([+-]\\d{3,4})[\\s\\S]{0,900}?(?:^|\\n)'+h+'(?:\\s|\\n)[\\s\\S]{0,900}?([+-]\\d{3,4})','m'),m=(text||'').match(re);if(m)out.push({away:a,home:h,awayML:+m[1],homeML:+m[2]})}const den=(text||'').match(/DEN[\s\S]{0,1200}?o(\d{2}(?:\.5)?)[\s\S]{0,1200}?KC/m);if(den){const x=out.find(g=>g.away==='DEN'&&g.home==='KC');if(x)x.total=+den[1]}return out}
+function importScan(obj){const snaps=obj.snapshots||[],pickSnap=snaps.filter(s=>/\|\s*Picks/i.test(s.title||'')||/Picks$/i.test(s.title||'')).sort((a,b)=>String(b.ts).localeCompare(String(a.ts)))[0];if(!pickSnap)throw new Error('No CBS Picks snapshot found.');const picks=parsePicks(pickSnap.text);if(!picks.length)throw new Error('Could not parse CBS pick percentages.');const oddsSnap=snaps.filter(s=>/cbssports\.com\/nfl\/odds/i.test(s.url||'')).sort((a,b)=>String(b.ts).localeCompare(String(a.ts)))[0],odds=oddsSnap?parseOdds(oddsSnap.text):[],om=new Map(odds.map(x=>[x.away+'|'+x.home,x])),old=new Map(state.games.map(x=>[x.away+'|'+x.home,x]));state.games=picks.map((p,i)=>{const k=p.away+'|'+p.home,prev=old.get(k)||{},o=om.get(k)||{};return{id:'g'+(i+1),...p,awayML:o.awayML??prev.awayML??null,homeML:o.homeML??prev.homeML??null,total:o.total??prev.total??null,pick:prev.pick??null,weight:prev.weight??null}});const stand=snaps.filter(s=>/Weekly Standings/i.test(s.title||'')).sort((a,b)=>String(b.ts).localeCompare(String(a.ts)))[0];if(stand){const names=[...stand.text.matchAll(/\n\n\n([^\n\t]{2,60})\n\t0\t0\t/g)].map(x=>x[1]);if(names.length>20)state.poolSize=new Set(names).size}state.importedAt=obj.exportedAt||new Date().toISOString();state.sim=null;assignInitial(.12);state.sim=simulate(2500);save();render();show('CBS scan imported. Ownership and available market data refreshed.')}
+function render(){const withMarket=state.games.filter(g=>market(g).home!=null).length;$('poolSize').textContent=state.poolSize||'—';$('expPts').textContent=expPoints().toFixed(1);$('top2').textContent=state.sim?pct(state.sim.top2,1):'—';$('winPct').textContent=state.sim?pct(state.sim.win,1):'—';const wc=weightedChalk();$('chalk').textContent=wc==null?'—':pct(wc,0);const mnf=state.games[state.games.length-1];$('tie').textContent=mnf?.total?Math.round(mnf.total):'—';$('modePill').textContent=withMarket===state.games.length?'MARKET + FIELD':'PARTIAL MARKET';$('statusTitle').textContent=state.importedAt?'CBS scan imported':'Week 1 seeded from CBS market';$('statusText').textContent=state.importedAt?'Last import: '+new Date(state.importedAt).toLocaleString()+'. Re-scan near the weekly deadline as ownership and odds move.':'Market seed: Aug. 28, 2026. Import a v0.4 CBS Bridge scan to refresh ownership, standings context, moneylines, and the Monday-night total.';
+$('games').innerHTML=state.games.map((g,i)=>{const s=side(g),m=market(g),r=s?read(g,s):{t:'UNPICKED',c:'blue'};return `<div class="game"><div class="gamehead"><span>Game ${i+1}</span><span>${g.weight?g.weight+' confidence':'weight pending'}</span></div><div class="matchup"><div class="team"><div class="teamname">${g.away}</div><div class="pct">${g.awayPct}% CBS · ${pct(m.away,0)} market</div><button class="pickbtn ${s==='away'?'selected':''}" data-pick="${g.away}" data-id="${g.id}">${s==='away'?'✓ '+g.away:'Pick '+g.away}</button></div><div class="at">@</div><div class="team right"><div class="teamname">${g.home}</div><div class="pct">${g.homePct}% CBS · ${pct(m.home,0)} market</div><button class="pickbtn ${s==='home'?'selected':''}" data-pick="${g.home}" data-id="${g.id}">${s==='home'?'✓ '+g.home:'Pick '+g.home}</button></div></div><div class="intel"><div class="mini"><b>${g.awayML??'—'}</b><span>${g.away} ML</span></div><div class="mini"><b class="${r.c==='green'?'good':r.c==='yellow'?'warn':r.c==='red'?'bad':''}">${r.t}</b><span>IQ read</span></div><div class="mini"><b>${g.homeML??'—'}</b><span>${g.home} ML</span></div><div class="mini"><b>${g.weight||'—'}</b><span>confidence</span></div></div><div class="inputs"><label>${g.away} moneyline<input data-field="awayML" data-id="${g.id}" type="number" value="${g.awayML??''}"></label><label>${g.home} moneyline<input data-field="homeML" data-id="${g.id}" type="number" value="${g.homeML??''}"></label><label>Total<input data-field="total" data-id="${g.id}" type="number" step=".5" value="${g.total??''}"></label></div></div>`}).join('');document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{const g=state.games.find(x=>x.id===b.dataset.id);g.pick=b.dataset.pick;state.sim=null;save();render()});document.querySelectorAll('input[data-field]').forEach(inp=>inp.onchange=()=>{const g=state.games.find(x=>x.id===inp.dataset.id);g[inp.dataset.field]=inp.value===''?null:+inp.value;state.sim=null;save();render()});$('rows').innerHTML=state.games.map(g=>{const s=side(g),p=s?prob(g,s):null,o=s?own(g,s):null,e=s?edge(g,s):null,r=s?read(g,s):{t:'UNPICKED',c:'blue'};return `<tr><td>${g.away} @ ${g.home}</td><td><b>${s?(s==='away'?g.away:g.home):'—'}</b></td><td>${g.weight||'—'}</td><td>${o==null?'—':pct(o,0)}</td><td>${p==null?'—':pct(p,1)}</td><td>${e==null?'—':(e>=0?'+':'')+Math.round(e*100)+' pts'}</td><td><span class="pill ${r.c}">${r.t}</span></td></tr>`}).join('')}
+$('importBtn').onclick=()=>$('scanFile').click();$('scanFile').onchange=async e=>{try{importScan(JSON.parse(await e.target.files[0].text()))}catch(err){alert('Could not import scan: '+err.message)}e.target.value=''};$('optBtn').onclick=optimize;$('saveBtn').onclick=()=>{save();show('Saved locally in this browser.')};if(!state.games.some(g=>g.pick)){assignInitial(.12);state.sim=simulate(2500);save()}render();
+</script></body></html>
