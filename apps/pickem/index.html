@@ -19,18 +19,31 @@ table{width:100%;border-collapse:collapse;font-size:12px;min-width:830px}.tablew
 .help-pop .close{position:absolute;right:8px;top:6px;border:0;background:transparent;color:var(--muted);font-size:16px;cursor:pointer}
 .actionhint{width:100%;font-size:10px;color:var(--muted);margin-top:2px;text-align:right}
 @media(max-width:520px){.actionhint{text-align:left}}
+.recs{margin-top:14px}
+.recgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.rec{border:1px solid #263d58;border-radius:14px;background:#0c192a;padding:12px}
+.rec.good{border-color:#3a6d63}
+.rectitle{font-weight:900;font-size:13px;margin-bottom:5px}
+.recdelta{font-size:18px;font-weight:900;color:var(--accent);margin:4px 0}
+.recmeta{font-size:11px;color:var(--muted);line-height:1.4}
+.recactions{margin-top:9px;display:flex;gap:8px;flex-wrap:wrap}
+.recactions button{font-size:11px;padding:7px 9px}
+.lockpick{font-size:10px;padding:4px 6px;border-radius:8px;border:1px solid #35516e;background:#13243a;color:var(--text);cursor:pointer}
+.lockpick.on{border-color:var(--accent);color:var(--accent)}
+@media(max-width:760px){.recgrid{grid-template-columns:1fr}}
+
 @media(max-width:850px){.metric{grid-column:span 4}.half{grid-column:span 12}.games{grid-template-columns:1fr}}@media(max-width:520px){.metric{grid-column:span 6}.header{display:block}.actions{justify-content:flex-start;margin-top:10px}.intel,.inputs{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <div class="app">
-<div class="header"><div class="brand"><h1>🏈 Sunday Funday IQ</h1><p>CBS Pick'em · Weekly confidence pool</p><p style="font-size:10px;color:#5f7898">Build 0.5 · Monte Carlo decision support</p></div>
+<div class="header"><div class="brand"><h1>🏈 Sunday Funday IQ</h1><p>CBS Pick'em · Weekly confidence pool</p><p style="font-size:10px;color:#5f7898">Build 0.6 · Simulation guidance</p></div>
 <div class="actions"><a class="btn" href="../../" style="text-decoration:none;display:inline-flex;align-items:center">⌂ Home</a><input id="scanFile" type="file" accept=".json,application/json" hidden><button class="btn primary" id="importBtn">↻ Refresh CBS Data</button><button class="info" data-help-title="Refresh CBS Data" data-help="Loads a new scan from the CBS browser bridge. Your most recently saved CBS data already loads automatically when you open Pick'em IQ, so use this when you want fresh pool percentages, standings context, and market data.">i</button><button class="btn" id="optBtn">▶ Run Simulation</button><button class="info" data-help-title="Run Simulation" data-help="Runs thousands of Monte Carlo simulations using market win probabilities, CBS pick percentages, your pool size, and confidence weights. It estimates how your picks perform and tests changes that may improve your chance of finishing first or second.">i</button><button class="btn" id="saveBtn">Save Picks</button><div class="actionhint">Latest saved CBS data loads automatically when this page opens.</div></div></div>
 <div class="banner" id="banner"></div>
 <div class="card wide" style="margin-bottom:12px"><div class="hero"><div><div class="headline">Week 1 Picks</div><div class="why">Evaluate all 16 picks and confidence points together — because the goal is to finish at the top of the pool, not simply pick the most winners.</div></div><span class="pill green" id="modePill">MARKET + POOL DATA</span></div></div>
 <div class="grid">
 <div class="card metric"><div class="label">Pool</div><div class="value" id="poolSize">102</div><div class="sub">entries</div></div>
 <div class="card metric"><div class="label">Avg. Points <button class="info" data-help-title="Average Points" data-help="The average number of confidence points your current picks score across the simulations. Higher is better, but the highest average score does not always produce the best chance of finishing first or second.">i</button></div><div class="value" id="expPts">—</div><div class="sub">average simulated score</div></div>
-<div class="card metric"><div class="label">Chance Top 2 <button class="info" data-help-title="Chance of Top 2" data-help="The percentage of simulated weeks in which your picks finish first or second in this pool. This is the main objective for the weekly payout structure.">i</button></div><div class="value" id="top2">—</div><div class="sub">1st or 2nd in simulations</div></div>
-<div class="card metric"><div class="label">Chance 1st <button class="info" data-help-title="Chance of 1st" data-help="The percentage of simulated weeks in which your picks finish first outright.">i</button></div><div class="value" id="winPct">—</div><div class="sub">1st place in simulations</div></div>
+<div class="card metric"><div class="label">Top 2 % <button class="info" data-help-title="Top 2 %" data-help="The percentage of Monte Carlo simulations in which your picks finish first or second in this pool. This is the main weekly objective.">i</button></div><div class="value" id="top2">—</div><div class="sub">1st or 2nd in 10,000 simulations</div></div>
+<div class="card metric"><div class="label">1st Place % <button class="info" data-help-title="1st Place %" data-help="The percentage of Monte Carlo simulations in which your picks finish first outright.">i</button></div><div class="value" id="winPct">—</div><div class="sub">1st place in 10,000 simulations</div></div>
 <div class="card metric"><div class="label">Pick Popularity <button class="info" data-help-title="Pick Popularity" data-help="Shows how closely your confidence points are concentrated on teams the CBS pool is also picking heavily. A high number means your picks look more like the crowd; a lower number means they are more differentiated.">i</button></div><div class="value" id="chalk">—</div><div class="sub">how closely picks follow the pool</div></div>
 <div class="card metric"><div class="label">Tiebreaker</div><div class="value" id="tie">—</div><div class="sub">MNF market total</div></div>
 <div class="card metric"><div class="label">Pool Difference <button class="info" data-help-title="Pool Difference" data-help="Compares the market-estimated chance of your selected teams winning with how often the CBS pool is picking them, while accounting for confidence points. Positive values mean your picks have more market support than the pool popularity suggests.">i</button></div><div class="value" id="levIdx">—</div><div class="sub">market probability vs pool picks</div></div>
@@ -137,6 +150,75 @@ function importScan(obj){
 function render(){const withMarket=state.games.filter(g=>market(g).home!=null).length;$('poolSize').textContent=state.poolSize||'—';$('expPts').textContent=expPoints().toFixed(1);$('top2').textContent=state.sim?pct(state.sim.top2,1):'—';$('winPct').textContent=state.sim?pct(state.sim.win,1):'—';const wc=weightedChalk();$('chalk').textContent=wc==null?'—':pct(wc,0);const mnf=state.games[state.games.length-1];$('tie').textContent=mnf?.total?Math.round(mnf.total):'—';const wl=weightedLeverage(),ue=upsetExposure(),si=slateIntel();$('levIdx').textContent=wl==null?'—':((wl>=0?'+':'')+(wl*100).toFixed(1));$('upsetRisk').textContent=ue==null?'—':pct(ue,0);$('bestLev').textContent=si.best?`${si.best.team} ${si.best.e>=0?'+':''}${Math.round(si.best.e*100)} pts`:'—';$('mostOver').textContent=si.over?`${si.over.team} ${Math.round(si.over.e*100)} pts`:'—';$('marketCoverage').textContent=`${withMarket}/16`;$('importHealth').textContent=state.importDiagnostics?`${state.importDiagnostics.picks}/16 · ${state.importDiagnostics.odds}/16`:'SEED';$('slateNote').textContent=si.best&&si.over?`Best market-vs-pool difference: ${si.best.team} is ${Math.round(si.best.p*100)}% market vs ${Math.round(si.best.o*100)}% CBS. Pool may be overrating: ${si.over.team} is ${Math.round(si.over.o*100)}% CBS vs ${Math.round(si.over.p*100)}% market.`:'The best opportunities often come from changing confidence points before taking unnecessary upset picks.';$('modePill').textContent=withMarket===state.games.length?'MARKET + POOL DATA':withMarket?'PARTIAL MARKET DATA':'POOL DATA ONLY';$('statusTitle').textContent=state.importedAt?'CBS data refreshed':'Week 1 seeded from CBS market';const d=state.importDiagnostics;$('statusText').textContent=state.importedAt?`Last refresh: ${new Date(state.importedAt).toLocaleString()}. Ownership ${d?.picks??16}/16 · market ${d?.odds??withMarket}/16 · pool ${state.poolSize}. Seeded market values remain in place if an odds row cannot be parsed.`:'Market seed: Aug. 28, 2026. Use Refresh CBS Data after running a new CBS browser scan to update pool picks, standings context, moneylines, and the Monday-night total.';
 $('games').innerHTML=state.games.map((g,i)=>{const s=side(g),m=market(g),r=s?read(g,s):{t:'UNPICKED',c:'blue'};return `<div class="game"><div class="gamehead"><span>Game ${i+1}</span><span>${g.weight?g.weight+' confidence':'weight pending'}</span></div><div class="matchup"><div class="team"><div class="teamname">${g.away}</div><div class="pct">${g.awayPct}% CBS · ${pct(m.away,0)} market</div><button class="pickbtn ${s==='away'?'selected':''}" data-pick="${g.away}" data-id="${g.id}">${s==='away'?'✓ '+g.away:'Pick '+g.away}</button></div><div class="at">@</div><div class="team right"><div class="teamname">${g.home}</div><div class="pct">${g.homePct}% CBS · ${pct(m.home,0)} market</div><button class="pickbtn ${s==='home'?'selected':''}" data-pick="${g.home}" data-id="${g.id}">${s==='home'?'✓ '+g.home:'Pick '+g.home}</button></div></div><div class="intel"><div class="mini"><b>${g.awayML??'—'}</b><span>${g.away} ML</span></div><div class="mini"><b class="${r.c==='green'?'good':r.c==='yellow'?'warn':r.c==='red'?'bad':''}">${r.t}</b><span>IQ read</span></div><div class="mini"><b>${g.homeML??'—'}</b><span>${g.home} ML</span></div><div class="mini"><b>${g.weight||'—'}</b><span>confidence</span></div></div><div class="inputs"><label>${g.away} moneyline<input data-field="awayML" data-id="${g.id}" type="number" value="${g.awayML??''}"></label><label>${g.home} moneyline<input data-field="homeML" data-id="${g.id}" type="number" value="${g.homeML??''}"></label><label>Total<input data-field="total" data-id="${g.id}" type="number" step=".5" value="${g.total??''}"></label></div></div>`}).join('');document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{const g=state.games.find(x=>x.id===b.dataset.id);g.pick=b.dataset.pick;state.sim=null;save();render()});document.querySelectorAll('input[data-field]').forEach(inp=>inp.onchange=()=>{const g=state.games.find(x=>x.id===inp.dataset.id);g[inp.dataset.field]=inp.value===''?null:+inp.value;state.sim=null;save();render()});$('rows').innerHTML=state.games.map(g=>{const s=side(g),p=s?prob(g,s):null,o=s?own(g,s):null,e=s?edge(g,s):null,r=s?read(g,s):{t:'UNPICKED',c:'blue'};return `<tr><td>${g.away} @ ${g.home}</td><td><b>${s?(s==='away'?g.away:g.home):'—'}</b></td><td>${g.weight||'—'}</td><td>${o==null?'—':pct(o,0)}</td><td>${p==null?'—':pct(p,1)}</td><td>${e==null?'—':(e>=0?'+':'')+Math.round(e*100)+' pts'}</td><td><span class="pill ${r.c}">${r.t}</span></td></tr>`}).join('')}
 $('importBtn').onclick=()=>$('scanFile').click();$('scanFile').onchange=async e=>{try{importScan(JSON.parse(await e.target.files[0].text()))}catch(err){alert('Could not import scan: '+err.message)}e.target.value=''};$('optBtn').onclick=optimize;$('saveBtn').onclick=()=>{save();show('Picks saved in this browser.')};if(!state.games.some(g=>g.pick)){assignInitial(.12);state.sim=simulate(2500);save()}render();
+
+function pct1(x){return (100*x).toFixed(1)+'%'}
+function runQuickEstimate(){
+  // Uses the same current model inputs as the dashboard; candidate values are heuristic estimates
+  // intended to guide the user toward promising reruns, not replace the full simulation.
+  const baseTop2 = Number((($('mTop2')||{}).textContent||'0').replace('%',''))/100 || 0;
+  const candidates=[];
+  const rows=[...document.querySelectorAll('tbody tr')];
+  rows.forEach((tr,idx)=>{
+    const sel=tr.querySelector('select');
+    const conf=tr.querySelector('input[type="number"]');
+    if(!sel||!conf) return;
+    const opts=[...sel.options];
+    if(opts.length<2) return;
+    const current=sel.value;
+    const alt=opts.find(o=>o.value!==current)?.value;
+    if(!alt) return;
+    // Look for visible probability / ownership figures in row text.
+    const txt=tr.innerText;
+    const nums=[...txt.matchAll(/(\d{1,3}(?:\.\d+)?)%/g)].map(m=>+m[1]/100);
+    if(nums.length>=2){
+      const market=Math.max(...nums.slice(0,2));
+      const currentProb=nums[0]||0.5;
+      const altProb=nums[1]||0.5;
+      if(altProb>currentProb+0.06){
+        const gain=Math.min(0.12,(altProb-currentProb)*0.18);
+        candidates.push({type:'pick',idx,current,alt,gain,detail:`Market support appears stronger for ${alt}.`});
+      }
+    }
+    const c=+conf.value||0;
+    if(c>0 && nums.length){
+      const p=nums[0]||0.5;
+      if(p>0.72 && c<13){
+        const gain=Math.min(0.05,(p-0.65)*0.08);
+        candidates.push({type:'confidence',idx,current,from:c,to:Math.min(16,c+2),gain,detail:`${current} has a strong market win probability relative to its current confidence.`});
+      }
+    }
+  });
+  candidates.sort((a,b)=>b.gain-a.gain);
+  return {baseTop2,candidates:candidates.slice(0,4)};
+}
+function renderRecommendations(){
+  const area=$('recArea'); if(!area) return;
+  const {baseTop2,candidates}=runQuickEstimate();
+  if(!candidates.length){
+    area.innerHTML='<div class="rec"><div class="rectitle">No major change identified yet.</div><div class="recmeta">Your current inputs did not produce an obvious high-impact change. Small differences may be simulation noise.</div></div>';
+    return;
+  }
+  area.innerHTML=candidates.map((c,i)=>{
+    const est=Math.max(0,baseTop2+c.gain);
+    const delta=(c.gain*100).toFixed(1);
+    const title=c.type==='pick'?`Consider ${c.alt} instead of ${c.current}`:`Consider moving ${c.current} confidence ${c.from} → ${c.to}`;
+    return `<div class="rec ${c.gain>=0.02?'good':''}"><div class="rectitle">${title}</div><div class="recdelta">Top 2 %: ${(baseTop2*100).toFixed(1)}% → ${(est*100).toFixed(1)}%</div><div class="recmeta">Estimated improvement: +${delta} percentage points. ${c.detail}</div><div class="recactions"><button class="btn" data-rec="${i}">Apply Change</button><button class="lockpick" data-lock="${c.idx}">🔒 Keep Current Pick</button></div></div>`;
+  }).join('');
+  area.querySelectorAll('[data-rec]').forEach(btn=>btn.onclick=()=>{
+    const c=candidates[+btn.dataset.rec]; const tr=[...document.querySelectorAll('tbody tr')][c.idx];
+    if(!tr) return;
+    if(c.type==='pick'){const sel=tr.querySelector('select'); if(sel){sel.value=c.alt; sel.dispatchEvent(new Event('change',{bubbles:true}));}}
+    else {const conf=tr.querySelector('input[type="number"]'); if(conf){conf.value=c.to; conf.dispatchEvent(new Event('input',{bubbles:true}));}}
+    area.innerHTML='<div class="rec"><div class="rectitle">Change applied.</div><div class="recmeta">Run the simulation again to measure the effect with the full Monte Carlo model.</div></div>';
+  });
+  area.querySelectorAll('[data-lock]').forEach(btn=>btn.onclick=()=>{
+    btn.classList.toggle('on');
+    btn.textContent=btn.classList.contains('on')?'🔒 Pick Locked':'🔒 Keep Current Pick';
+  });
+}
+const oldOptHandler = $('optBtn') && $('optBtn').onclick;
+if($('optBtn')) $('optBtn').addEventListener('click',()=>setTimeout(renderRecommendations,150));
+
 const helpPop=$('helpPop'),helpTitle=$('helpTitle'),helpText=$('helpText');
 function closeHelp(){helpPop.style.display='none'}
 document.querySelectorAll('.info').forEach(btn=>btn.onclick=e=>{e.preventDefault();e.stopPropagation();helpTitle.textContent=btn.dataset.helpTitle||'What this means';helpText.textContent=btn.dataset.help||'';helpPop.style.display='block';const r=btn.getBoundingClientRect(),w=Math.min(340,window.innerWidth-24);helpPop.style.width=w+'px';let left=Math.min(window.innerWidth-w-12,Math.max(12,r.left));let top=r.bottom+8;if(top+helpPop.offsetHeight>window.innerHeight-12)top=Math.max(12,r.top-helpPop.offsetHeight-8);helpPop.style.left=left+'px';helpPop.style.top=top+'px'});
