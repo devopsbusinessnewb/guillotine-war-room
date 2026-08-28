@@ -1,0 +1,33 @@
+
+(()=> {
+ const clean=t=>String(t||"")
+   .replace(/("?(?:authorization|cookie|set-cookie|csrf|token|jwt|session|secret)"?\s*[:=]\s*)"[^"]*"/gi,'$1"[REDACTED]"')
+   .replace(/(Bearer\s+)[A-Za-z0-9._~+\/=-]+/gi,"$1[REDACTED]");
+
+ const snapshot=()=>({
+   ts:new Date().toISOString(),
+   url:location.href,
+   title:document.title,
+   text:clean(document.body?.innerText||"").slice(0,350000)
+ });
+
+ window.addEventListener("message",e=>{
+   if(e.source!==window||e.data?.source!=="CBSIQ3")return;
+   if(e.data.type==="capture"){
+     chrome.runtime.sendMessage({type:"ADD_CAPTURE",payload:{...e.data.payload,body:clean(e.data.payload?.body)}})
+   } else if(e.data.type==="ready"){
+     chrome.runtime.sendMessage({type:"HOOK_READY",payload:e.data.payload})
+   }
+ });
+
+ chrome.runtime.onMessage.addListener((m,s,r)=>{
+   if(m?.type==="SNAPSHOT"){
+     chrome.runtime.sendMessage({type:"ADD_SNAPSHOT",payload:snapshot()},()=>r({ok:true}));
+     return true
+   }
+ });
+
+ const take=()=>chrome.runtime.sendMessage({type:"ADD_SNAPSHOT",payload:snapshot()});
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(take,1200),{once:true});
+ else setTimeout(take,1200);
+})();

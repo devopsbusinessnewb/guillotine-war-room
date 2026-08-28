@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "CBS Pick'em IQ Bridge",
+  "version": "0.3.0",
+  "description": "Scans authenticated CBS Pick'em pages and exports only CBS Pick'em GraphQL data.",
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://picks.cbssports.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CBS Pick'em IQ Bridge"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://picks.cbssports.com/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://picks.cbssports.com/*"
+      ],
+      "js": [
+        "hook.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ]
+}
